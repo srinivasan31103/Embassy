@@ -320,21 +320,21 @@ function Home() {
 
         {/* Bottom Navigation Bar */}
         <div className="home-bottombar">
-          <Link to="/" className="home-bottombar-icon">
+          <span className="home-bottombar-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
-          </Link>
+          </span>
           <div className="home-bottombar-items">
-            <Link to="/" className="home-bottombar-item active">Project Highlights</Link>
-            <Link to="/contact" className="home-bottombar-item">Location</Link>
-            <Link to="/floor-plan" className="home-bottombar-item">Master Plan</Link>
-            <Link to="/" className="home-bottombar-item">Project Details</Link>
-            <Link to="/features" className="home-bottombar-item">Amenities</Link>
-            <Link to="/" className="home-bottombar-item">Collaterals</Link>
-            <Link to="/" className="home-bottombar-item">Walkthrough</Link>
+            <span className="home-bottombar-item active">Project Highlights</span>
+            <span className="home-bottombar-item">Location</span>
+            <span className="home-bottombar-item">Master Plan</span>
+            <span className="home-bottombar-item">Project Details</span>
+            <span className="home-bottombar-item">Amenities</span>
+            <span className="home-bottombar-item">Collaterals</span>
+            <span className="home-bottombar-item">Walkthrough</span>
           </div>
-          <Link to="/contact" className="home-bottombar-icon">
+          <span className="home-bottombar-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-          </Link>
+          </span>
         </div>
 
         {modalImage && (
@@ -445,21 +445,21 @@ function Home() {
 
         {/* Bottom Navigation Bar */}
         <div className="home-bottombar">
-          <Link to="/" className="home-bottombar-icon">
+          <span className="home-bottombar-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
-          </Link>
+          </span>
           <div className="home-bottombar-items">
-            <Link to="/" className="home-bottombar-item active">Project Highlights</Link>
-            <Link to="/contact" className="home-bottombar-item">Location</Link>
-            <Link to="/floor-plan" className="home-bottombar-item">Master Plan</Link>
-            <Link to="/" className="home-bottombar-item">Project Details</Link>
-            <Link to="/features" className="home-bottombar-item">Amenities</Link>
-            <Link to="/" className="home-bottombar-item">Collaterals</Link>
-            <Link to="/" className="home-bottombar-item">Walkthrough</Link>
+            <span className="home-bottombar-item active">Project Highlights</span>
+            <span className="home-bottombar-item">Location</span>
+            <span className="home-bottombar-item">Master Plan</span>
+            <span className="home-bottombar-item">Project Details</span>
+            <span className="home-bottombar-item">Amenities</span>
+            <span className="home-bottombar-item">Collaterals</span>
+            <span className="home-bottombar-item">Walkthrough</span>
           </div>
-          <Link to="/contact" className="home-bottombar-icon">
+          <span className="home-bottombar-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-          </Link>
+          </span>
         </div>
 
         {modalImage && (
@@ -536,21 +536,21 @@ function Home() {
       </div>
 
       <div className="home-bottombar">
-        <Link to="/" className="home-bottombar-icon">
+        <span className="home-bottombar-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
-        </Link>
+        </span>
         <div className="home-bottombar-items">
-          <Link to="/" className="home-bottombar-item active">Project Highlights</Link>
-          <Link to="/contact" className="home-bottombar-item">Location</Link>
-          <Link to="/floor-plan" className="home-bottombar-item">Master Plan</Link>
-          <Link to="/" className="home-bottombar-item">Project Details</Link>
-          <Link to="/features" className="home-bottombar-item">Amenities</Link>
-          <Link to="/" className="home-bottombar-item">Collaterals</Link>
-          <Link to="/" className="home-bottombar-item">Walkthrough</Link>
+          <span className="home-bottombar-item active">Project Highlights</span>
+          <span className="home-bottombar-item">Location</span>
+          <span className="home-bottombar-item">Master Plan</span>
+          <span className="home-bottombar-item">Project Details</span>
+          <span className="home-bottombar-item">Amenities</span>
+          <span className="home-bottombar-item">Collaterals</span>
+          <span className="home-bottombar-item">Walkthrough</span>
         </div>
-        <Link to="/contact" className="home-bottombar-icon">
+        <span className="home-bottombar-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        </Link>
+        </span>
       </div>
     </div>
   );
