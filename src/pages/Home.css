@@ -1,0 +1,878 @@
+/* ============================
+   HOME PAGE - Interactive Building View
+   ============================ */
+
+.home-page {
+  height: 100vh;
+  background: #f5f3f0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================
+   TOP LOGO BAR
+   ============================ */
+
+.home-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.home-topbar-logo-left {
+  height: 44px;
+  object-fit: contain;
+}
+
+.home-topbar-logo-right {
+  height: 44px;
+  object-fit: contain;
+}
+
+/* ============================
+   MAIN BUILDING VIEW
+   ============================ */
+
+.home-main-view {
+  display: grid;
+  grid-template-columns: 220px 1fr 220px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  gap: 14px;
+  padding: 16px 20px 10px;
+}
+
+/* ============================
+   BOTTOM NAVIGATION BAR
+   ============================ */
+
+.home-bottombar {
+  display: flex;
+  align-items: stretch;
+  background: #1a1a1a;
+  flex-shrink: 0;
+  border-radius: 16px 16px 0 0;
+  margin: 0 auto 16px;
+  width: fit-content;
+  max-width: 90%;
+  overflow: hidden;
+  border: 2px solid rgba(197, 148, 58, 0.55);
+  border-radius: 16px;
+}
+
+.home-bottombar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  min-width: 56px;
+  background: linear-gradient(135deg, #c5943a, #a67c2e);
+  transition: opacity 0.2s;
+}
+
+.home-bottombar-icon svg {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+}
+
+.home-bottombar-icon:hover {
+  opacity: 0.85;
+}
+
+.home-bottombar-items {
+  display: flex;
+  align-items: stretch;
+}
+
+.home-bottombar-item {
+  padding: 14px 24px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.home-bottombar-items > :last-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.home-bottombar-item:hover,
+.home-bottombar-item.active {
+  color: var(--gold);
+}
+
+.home-bottombar-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Side Panels - floating cards with rounded corners */
+.home-panel {
+  background: #fff;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  align-self: start;
+}
+
+.home-panel-title {
+  background: var(--gold);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/* Tower Features (Left Panel) */
+.home-feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.home-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 0;
+  transition: transform 0.2s;
+}
+
+.home-feature-item:hover {
+  transform: translateX(4px);
+}
+
+.home-feature-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+
+.home-feature-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.home-feature-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
+
+/* Unit Details (Right Panel) */
+.home-unit-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-unit-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: transform 0.2s;
+}
+
+.home-unit-detail-item:hover {
+  transform: translateX(-4px);
+}
+
+.home-unit-detail-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+
+.home-unit-detail-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.home-unit-detail-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
+
+/* ============================
+   BUILDING (Center)
+   ============================ */
+
+.home-building-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.home-tower-label {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+  letter-spacing: 2px;
+  padding: 6px 0;
+  text-align: center;
+}
+
+.home-building {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  min-height: 0;
+}
+
+/* Wrapper sizes exactly to the rendered image - bands are relative to this */
+.home-building-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.home-building-img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 180px);
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Floor Hover Band - highlights only the particular floor on the building */
+.home-floor-band {
+  position: absolute;
+  background: rgba(197, 148, 58, 0.55);
+  pointer-events: none;
+  z-index: 5;
+  border-top: 2px solid rgba(197, 148, 58, 0.9);
+  border-bottom: 2px solid rgba(197, 148, 58, 0.9);
+}
+
+/* Selected Floor Band - shown after click with floor number label */
+.home-selected-floor {
+  position: absolute;
+  background: rgba(197, 148, 58, 0.6);
+  pointer-events: none;
+  z-index: 6;
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+}
+
+.home-selected-floor-label {
+  background: rgba(26, 26, 46, 0.9);
+  color: var(--gold);
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  border: 1px solid var(--gold);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(110%, -50%);
+}
+
+/* Hint Text */
+.home-hint {
+  font-size: 12px;
+  color: var(--text-light);
+  text-align: center;
+  padding: 6px 0;
+  letter-spacing: 0.3px;
+}
+
+/* ============================
+   DETAIL VIEW (Floor Plan)
+   ============================ */
+
+.home-detail-view {
+  display: grid;
+  grid-template-columns: 240px 1fr 300px;
+  flex: 1;
+  gap: 16px;
+  padding: 16px;
+  align-items: start;
+  animation: homeViewFadeIn 0.4s ease;
+}
+
+@keyframes homeViewFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Detail Left Panel */
+.home-detail-left {
+  background: #fff;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.home-floor-badge {
+  background: var(--gold);
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.home-unit-btn {
+  padding: 14px 20px;
+  border: 2px solid var(--gold);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: var(--font-body);
+  text-align: center;
+}
+
+.home-unit-btn:hover {
+  background: rgba(197, 148, 58, 0.1);
+  transform: translateX(4px);
+}
+
+.home-unit-btn.active {
+  background: var(--unit-color, var(--gold));
+  border-color: var(--unit-color, var(--gold));
+  color: var(--text-dark);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(197, 148, 58, 0.25);
+}
+
+/* Mini Floor Selector */
+.home-floor-mini-selector {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.home-floor-mini-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.home-floor-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.home-floor-mini-btn {
+  padding: 8px 4px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.home-floor-mini-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.home-floor-mini-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+
+/* Detail Center */
+.home-detail-center {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: var(--off-white);
+}
+
+.home-detail-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.home-detail-header h2 {
+  font-size: 22px;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+
+.home-detail-header p {
+  font-size: 12px;
+  color: var(--text-light);
+  letter-spacing: 0.5px;
+}
+
+.home-floorplan-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.home-floorplan-img-container {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+}
+
+/* Single SVG containing the floor plan image + interactive unit paths */
+.home-floorplan-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 200px);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Each unit path — invisible by default, highlighted on hover */
+.unit-path {
+  fill-opacity: 0;
+  stroke: transparent;
+  stroke-width: 3;
+  cursor: pointer;
+  transition: fill-opacity 0.3s ease, stroke 0.3s ease;
+}
+
+.unit-path:hover,
+.unit-path.active {
+  fill-opacity: 0.4;
+  stroke: rgba(197, 148, 58, 0.9);
+  stroke-width: 4;
+}
+
+/* Unit label badge — floats above the unit (like reference) */
+.home-floorplan-unit-label {
+  position: absolute;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+  transform: translate(-50%, 0);
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  animation: unitLabelFadeIn 0.2s ease;
+}
+
+@keyframes unitLabelFadeIn {
+  from { opacity: 0; transform: translate(-50%, 4px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Legacy img rule kept for modal/other views */
+.home-floorplan-wrap img {
+  max-width: 100%;
+  max-height: calc(100vh - 260px);
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Legend */
+.home-legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 14px 0 0;
+  flex-wrap: wrap;
+}
+
+.home-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.home-legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+/* Detail Right Panel */
+.home-detail-right {
+  background: #fff;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.home-unit-info-badge {
+  padding: 14px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.home-action-btn {
+  padding: 14px 20px;
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: var(--font-body);
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.home-action-btn:hover {
+  background: var(--gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(197, 148, 58, 0.3);
+}
+
+/* Unit Details Card */
+.home-unit-details-card {
+  margin-top: 8px;
+  padding: 18px;
+  background: var(--off-white);
+  border-radius: 8px;
+  border: 1px solid #eee;
+  animation: homeCardSlideIn 0.3s ease;
+}
+
+@keyframes homeCardSlideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.home-unit-details-card h4 {
+  font-size: 15px;
+  color: var(--text-dark);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--gold);
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+.home-room-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 14px;
+}
+
+.home-room-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 4px;
+  font-size: 12px;
+  border-bottom: 1px dashed #ddd;
+  transition: background 0.2s, color 0.2s;
+}
+
+.home-room-row.highlighted {
+  background: var(--gold);
+  color: #fff;
+  border-radius: 4px;
+}
+
+.home-room-row.highlighted .home-room-name,
+.home-room-row.highlighted .home-room-size {
+  color: #fff;
+}
+
+.home-room-row:last-child {
+  border-bottom: none;
+}
+
+.home-room-name {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.home-room-size {
+  color: var(--text-light);
+  font-weight: 500;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.home-area-summary {
+  padding-top: 12px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.home-area-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.home-area-row strong {
+  color: var(--text-dark);
+}
+
+.home-area-row.total {
+  padding-top: 8px;
+  border-top: 1px dashed #ccc;
+  margin-top: 4px;
+}
+
+.home-area-row.total strong {
+  color: var(--gold);
+  font-size: 13px;
+}
+
+/* Unit Detail View - Room card on left */
+.home-unit-room-card {
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+}
+
+.home-unit-room-card .home-room-list {
+  margin-bottom: 14px;
+}
+
+.home-unit-room-card .home-room-row {
+  padding: 8px 4px;
+  font-size: 13px;
+}
+
+.home-unit-view-header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.home-unit-view-header h2 {
+  font-size: 20px;
+  color: var(--text-dark);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.home-unit-view-header p {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.home-unit-3d-container {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.home-unit-3d-img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 250px);
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.home-room-hotspot {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.25s ease;
+}
+
+.home-room-hotspot:hover {
+  background: rgba(199, 155, 99, 0.6);
+}
+
+.home-room-tooltip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -110%);
+  background: rgba(199, 155, 99, 0.9);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  animation: homeTooltipFade 0.2s ease;
+}
+
+@keyframes homeTooltipFade {
+  from { opacity: 0; transform: translate(-50%, -100%); }
+  to { opacity: 1; transform: translate(-50%, -110%); }
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+
+@media (max-width: 1200px) {
+  .home-main-view {
+    grid-template-columns: 180px 1fr 180px;
+  }
+
+  .home-detail-view {
+    grid-template-columns: 200px 1fr 260px;
+  }
+}
+
+@media (max-width: 992px) {
+  .home-page {
+    height: auto;
+    overflow: auto;
+  }
+
+  .home-main-view {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: auto;
+  }
+
+  .home-panel {
+    padding: 20px;
+  }
+
+  .home-left-panel {
+    order: 2;
+  }
+
+  .home-building-container {
+    order: 1;
+    min-height: 60vh;
+  }
+
+  .home-right-panel {
+    order: 3;
+  }
+
+  .home-feature-list,
+  .home-unit-detail-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .home-feature-item,
+  .home-unit-detail-item {
+    flex: 1 1 auto;
+    min-width: 200px;
+  }
+
+  .home-detail-view {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: auto;
+  }
+
+  .home-detail-left {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    padding: 16px;
+  }
+
+  .home-floor-badge {
+    margin-bottom: 0;
+  }
+
+  .home-floor-mini-selector {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    flex: 1;
+  }
+
+  .home-detail-right {
+    border-left: none;
+    border-top: 1px solid #eee;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-panel-title {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .home-feature-item,
+  .home-unit-detail-item {
+    min-width: 100%;
+  }
+
+  .home-floor-mini-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

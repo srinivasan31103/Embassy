@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 3000 1688"
+     width="100%">
+
+  <defs>
+    <style>
+      .unit-path {
+        fill: rgba(199, 155, 99, 0);
+        stroke: transparent;
+        stroke-width: 3;
+        cursor: pointer;
+        transition: fill 0.3s ease, stroke 0.3s ease;
+      }
+      .unit-path:hover {
+        fill: rgba(199, 155, 99, 0.5);
+        stroke: rgba(197, 148, 58, 0.9);
+        stroke-width: 4;
+      }
+    </style>
+  </defs>
+
+  <!-- Original floor plan image as background -->
+  <image href="tower-b-typical-floor.png"
+         x="0" y="0"
+         width="3000" height="1688" />
+
+  <!-- Unit 2 (top-left) -->
+  <path class="unit-path" d="M 946,192 L 1118,191 L 1146,135 L 1331,135 L 1531,142 L 1537,201 L 1736,201 L 1735,463 L 1553,465 L 1523,648 L 1451,648 L 1446,676 L 1211,685 L 1205,546 L 1131,543 L 1140,478 L 1279,472 L 1264,401 L 1146,405 L 1143,437 L 1035,435 L 1031,534 L 927,537 L 946,192 Z"/>
+
+  <!-- Unit 1 (top-right) -->
+  <path class="unit-path" d="M 1757,202 L 1923,200 L 1960,150 L 2153,143 L 2358,128 L 2362,182 L 2547,187 L 2557,532 L 2468,533 L 2466,433 L 2377,422 L 2383,394 L 2358,402 L 2364,472 L 2362,541 L 2292,546 L 2290,683 L 2053,678 L 2046,648 L 1974,650 L 1970,472 L 1764,478 L 1755,478 L 1757,209 Z"/>
+
+  <!-- Unit 3 (bottom-left) -->
+  <path class="unit-path" d="M 1298,956 L 1294,1081 L 1340,1089 L 1343,1181 L 1248,1181 L 1243,1087 L 1159,1094 L 1158,1429 L 1315,1437 L 1344,1486 L 1535,1492 L 1539,1483 L 1729,1483 L 1731,1092 L 1537,1083 L 1529,944 L 1300,940 Z"/>
+
+  <!-- Unit 4 (bottom-right) -->
+  <path class="unit-path" d="M 1972,946 L 2199,946 L 2199,1070 L 2108,1085 L 2108,1215 L 2229,1215 L 2244,1096 L 2438,1090 L 2442,1277 L 2492,1283 L 2486,1381 L 2432,1377 L 2425,1505 L 1940,1502 L 1938,1486 L 1746,1481 L 1748,1079 L 1963,1083 Z"/>
+</svg>

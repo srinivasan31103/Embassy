@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { margin: 0; background: #222; font-family: monospace; }
+  #info { position: fixed; top: 10px; left: 10px; background: rgba(0,0,0,0.8); color: #0f0; padding: 10px 16px; font-size: 14px; z-index: 10; border-radius: 6px; }
+  #points { position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: #ff0; padding: 10px 16px; font-size: 12px; z-index: 10; border-radius: 6px; max-height: 90vh; overflow-y: auto; white-space: pre; }
+  svg { display: block; max-width: 100vw; max-height: 100vh; margin: auto; }
+</style>
+</head>
+<body>
+<div id="info">Hover to see coordinates. Click to add point. Press Z to undo. Press C to copy path.</div>
+<div id="points">Points: (click image to add)<br></div>
+<svg id="svg" viewBox="0 0 3000 1688" preserveAspectRatio="xMidYMid meet">
+  <image href="images/tower-b-typical-floor.png" x="0" y="0" width="3000" height="1688"/>
+  <path id="tracePath" fill="rgba(199,155,99,0.35)" stroke="rgba(197,148,58,0.9)" stroke-width="3" d=""/>
+  <circle id="cursor" r="6" fill="red" opacity="0.8" cx="-100" cy="-100"/>
+</svg>
+<script>
+const svg = document.getElementById('svg');
+const path = document.getElementById('tracePath');
+const cursor = document.getElementById('cursor');
+const info = document.getElementById('info');
+const pointsDiv = document.getElementById('points');
+const pts = [];
+
+function getSVGPoint(e) {
+  const pt = svg.createSVGPoint();
+  pt.x = e.clientX; pt.y = e.clientY;
+  const svgPt = pt.matrixTransform(svg.getScreenCTM().inverse());
+  return { x: Math.round(svgPt.x), y: Math.round(svgPt.y) };
+}
+
+svg.addEventListener('mousemove', (e) => {
+  const p = getSVGPoint(e);
+  cursor.setAttribute('cx', p.x);
+  cursor.setAttribute('cy', p.y);
+  info.textContent = `x: ${p.x}  y: ${p.y}  (${(p.x/30).toFixed(1)}%, ${(p.y/16.88).toFixed(1)}%)`;
+});
+
+svg.addEventListener('click', (e) => {
+  const p = getSVGPoint(e);
+  pts.push(p);
+  updatePath();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'z' || e.key === 'Z') { pts.pop(); updatePath(); }
+  if (e.key === 'c' || e.key === 'C') {
+    const d = pts.length ? 'M ' + pts.map(p => `${p.x},${p.y}`).join(' L ') + ' Z' : '';
+    navigator.clipboard.writeText(d);
+    info.textContent = 'Path copied to clipboard!';
+  }
+});
+
+function updatePath() {
+  if (pts.length < 2) { path.setAttribute('d', ''); }
+  else {
+    const d = 'M ' + pts.map(p => `${p.x},${p.y}`).join(' L ') + ' Z';
+    path.setAttribute('d', d);
+  }
+  pointsDiv.innerHTML = 'Points: ' + pts.length + '\n' + pts.map((p,i) => `${i+1}. (${p.x}, ${p.y})`).join('\n');
+  if (pts.length) {
+    const d = 'M ' + pts.map(p => `${p.x},${p.y}`).join(' L ') + ' Z';
+    pointsDiv.innerHTML += '\n\nPath:\n' + d;
+  }
+}
+</script>
+</body>
+</html>

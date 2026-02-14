@@ -1,0 +1,197 @@
+/* Tower Features Grid */
+.tower-features-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.tower-feature-card {
+  text-align: center;
+  padding: 36px 20px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.tower-feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.1);
+  border-color: var(--gold);
+}
+
+.tf-icon-wrap {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  background: var(--off-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.tower-feature-card:hover .tf-icon-wrap {
+  background: var(--gold);
+  transform: scale(1.1) rotate(5deg);
+}
+
+.tf-icon {
+  font-size: 28px;
+  transition: filter 0.3s;
+}
+
+.tower-feature-card:hover .tf-icon {
+  filter: brightness(0) invert(1);
+}
+
+.tower-feature-card h3 {
+  font-size: 14px;
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.3s;
+}
+
+.tower-feature-card:hover h3 {
+  color: var(--gold);
+}
+
+/* Unit Details Section */
+.unit-details-section {
+  background: var(--off-white);
+}
+
+.unit-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.unit-detail-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.unit-detail-card:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  transform: translateX(6px);
+  border-color: var(--gold);
+}
+
+.ud-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--gold);
+  color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: transform 0.3s, border-radius 0.3s;
+}
+
+.unit-detail-card:hover .ud-icon {
+  transform: scale(1.1);
+  border-radius: 50%;
+}
+
+.unit-detail-card p {
+  font-size: 14px;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+/* Amenities Grid */
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.amenity-card {
+  padding: 30px 24px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.amenity-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transform: translateY(-5px);
+}
+
+.amenity-number {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.4;
+  font-family: var(--font-heading);
+  margin-bottom: 12px;
+  transition: opacity 0.3s;
+}
+
+.amenity-card:hover .amenity-number {
+  opacity: 0.8;
+}
+
+.amenity-card h3 {
+  font-size: 16px;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.amenity-card:hover h3 {
+  color: var(--gold);
+}
+
+.amenity-card p {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .tower-features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .amenities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .tower-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .unit-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .amenities-grid {
+    grid-template-columns: 1fr;
+  }
+}
