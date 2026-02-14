@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { towerFeatures, unitDetails, units, typicalFloors, floorTypeLabel, floorPositions } from '../data/buildingData';
+import { towerFeatures, unitDetails, units, typicalFloors, floorPositions } from '../data/buildingData';
 import ImageModal from '../components/ImageModal';
 import './Home.css';
 
