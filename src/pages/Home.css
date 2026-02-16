@@ -498,6 +498,22 @@
   stroke-width: 4;
 }
 
+.room-path {
+  fill: rgba(245, 222, 179, 0);
+  stroke: transparent;
+  stroke-width: 2;
+  cursor: pointer;
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+.room-path:hover,
+.room-path.active {
+  fill: rgba(197, 148, 58, 0.5);
+  stroke: rgba(160, 110, 30, 1);
+  stroke-width: 4;
+}
+
+
 /* Unit label badge — floats above the unit (like reference) */
 .home-floorplan-unit-label {
   position: absolute;

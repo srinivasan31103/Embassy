@@ -1,6 +1,8 @@
 import { useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { towerFeatures, unitDetails, units, typicalFloors, floorPositions } from '../data/buildingData';
+import { unitPaths as arcadiaUnitPaths, unitLabelPositions as arcadiaLabelPositions } from '../data/unitCoordinates';
+import { roomPaths } from '../data/roomCoordinates';
 import ImageModal from '../components/ImageModal';
 import './Home.css';
 
@@ -99,82 +101,8 @@ function Home() {
   const [modalImage, setModalImage] = useState(null);
   const buildingRef = useRef(null);
 
-  // Room hotspot zones on the 3D image (percentage positions)
-  // Traced from 3bhk-presidentia-3d.png — positions match the 3D isometric render
-  const roomHotspots = {
-    2: [ // Unit 2 (3BHK Presidentia — matches the 3D image)
-      { name: 'Entrance Foyer', size: "5'6\" x 6'11\"", top: 56.8, left: 65, width: 7.1, height: 7.6 },
-      { name: 'Living/Dining', size: "21'0\" x 14'3\"", top: 34.9, left: 45.3, width: 24.4, height: 18.2 },
-      { name: 'Balcony', size: "13'0\" x 5'0\"", top: 27, left: 49.1, width: 14.6, height: 6.5 },
-      { name: 'Kitchen', size: "8'5\" x 11'2\"", top: 53.6, left: 23.2, width: 12.3, height: 19 },
-      { name: 'Utility', size: "3'6\" x 5'6\"", top: 69.4, left: 15.5, width: 7, height: 6.4 },
-      { name: 'Passage', size: "11'8\" x 3'3\"", top: 51.9, left: 21.2, width: 22.1, height: 1.1 },
-      { name: 'Bedroom 1', size: "11'0\" x 13'0\"", top: 33.5, left: 6.9, width: 15.4, height: 17.7 },
-      { name: 'Toilet', size: "4'6\" x 8'0\"", top: 58.3, left: 5.8, width: 9.7, height: 10.7 },
-      { name: 'Master Bedroom', size: "11'0\" x 15'0\"", top: 37.6, left: 71.6, width: 14, height: 14.2 },
-      { name: 'M.Toilet', size: "5'0\" x 8'0\"", top: 46.4, left: 88.4, width: 3, height: 8.6 },
-      { name: 'Bedroom 2', size: "11'0\" x 14'0\"", top: 30.8, left: 24.9, width: 10.4, height: 19.6 },
-      { name: 'Toilet 2', size: "5'0\" x 8'0\"", top: 38.1, left: 37.9, width: 5, height: 8 },
-      { name: 'Balcony 2', size: "7'0\" x 5'0\"", top: 25.7, left: 13.5, width: 7.7, height: 5.8 },
-    ],
-    1: [ // Unit 1 (2BHK — mapped onto 3BHK image)
-      { name: 'Dry Balcony', size: "3'3\" x 8'0\"", top: 8, left: 6, width: 11, height: 12 },
-      { name: 'Bedroom 2', size: "11'7\" x 11'", top: 20, left: 4, width: 22, height: 28 },
-      { name: 'Toilet 2', size: "8' x 5'", top: 40, left: 15, width: 10, height: 13 },
-      { name: 'Deck', size: "11'2\" x 4'7\"", top: 3, left: 32, width: 24, height: 14 },
-      { name: 'Living/Dining', size: "11'4\" x 15'10\"", top: 17, left: 28, width: 31, height: 38 },
-      { name: 'Kitchen', size: "10'10\" x 8'", top: 56, left: 26, width: 16, height: 22 },
-      { name: 'Entrance Foyer', size: "4'6\" x 6'3\"", top: 52, left: 44, width: 10, height: 10 },
-      { name: 'Utility/Storage', size: "7' x 3'5\"", top: 66, left: 14, width: 10, height: 14 },
-      { name: 'Common Toilet', size: "8' x 4'5\"", top: 60, left: 3, width: 11, height: 17 },
-      { name: 'Passage 1', size: "5' x 3'5\"", top: 56, left: 46, width: 16, height: 7 },
-      { name: 'Master Bedroom', size: "11' x 12'10\"", top: 17, left: 59, width: 24, height: 33 },
-      { name: 'Master Toilet', size: "5' x 8'4\"", top: 17, left: 83, width: 13, height: 21 },
-    ],
-    3: [ // Unit 3 (2BHK — mapped onto 3BHK image)
-      { name: 'Dry Balcony', size: "3'3\" x 8'0\"", top: 8, left: 6, width: 11, height: 12 },
-      { name: 'Bedroom 2', size: "11'7\" x 11'", top: 20, left: 4, width: 22, height: 28 },
-      { name: 'Toilet 2', size: "8' x 5'", top: 40, left: 15, width: 10, height: 13 },
-      { name: 'Deck', size: "11'2\" x 4'7\"", top: 3, left: 32, width: 24, height: 14 },
-      { name: 'Living/Dining', size: "11'4\" x 15'10\"", top: 17, left: 28, width: 31, height: 38 },
-      { name: 'Kitchen', size: "10'10\" x 8'", top: 56, left: 26, width: 16, height: 22 },
-      { name: 'Entrance Foyer', size: "4'6\" x 6'3\"", top: 52, left: 44, width: 10, height: 10 },
-      { name: 'Utility/Storage', size: "7' x 3'5\"", top: 66, left: 14, width: 10, height: 14 },
-      { name: 'Common Toilet', size: "8' x 4'5\"", top: 60, left: 3, width: 11, height: 17 },
-      { name: 'Passage 1', size: "5' x 3'5\"", top: 56, left: 46, width: 16, height: 7 },
-      { name: 'Master Bedroom', size: "11' x 12'10\"", top: 17, left: 59, width: 24, height: 33 },
-      { name: 'Master Toilet', size: "5' x 8'4\"", top: 17, left: 83, width: 13, height: 21 },
-    ],
-    4: [ // Unit 4 (2BHK — mapped onto 3BHK image)
-      { name: 'Dry Balcony', size: "3'3\" x 8'0\"", top: 8, left: 6, width: 11, height: 12 },
-      { name: 'Bedroom 2', size: "11'7\" x 11'", top: 20, left: 4, width: 22, height: 28 },
-      { name: 'Toilet 2', size: "8' x 5'", top: 40, left: 15, width: 10, height: 13 },
-      { name: 'Deck', size: "11'2\" x 4'7\"", top: 3, left: 32, width: 24, height: 14 },
-      { name: 'Living/Dining', size: "11'4\" x 15'10\"", top: 17, left: 28, width: 31, height: 38 },
-      { name: 'Kitchen', size: "10'10\" x 8'", top: 56, left: 26, width: 16, height: 22 },
-      { name: 'Entrance Foyer', size: "4'6\" x 6'3\"", top: 52, left: 44, width: 10, height: 10 },
-      { name: 'Utility/Storage', size: "7' x 3'5\"", top: 66, left: 14, width: 10, height: 14 },
-      { name: 'Common Toilet', size: "8' x 4'5\"", top: 60, left: 3, width: 11, height: 17 },
-      { name: 'Passage 1', size: "5' x 3'5\"", top: 56, left: 46, width: 16, height: 7 },
-      { name: 'Master Bedroom', size: "11' x 12'10\"", top: 17, left: 59, width: 24, height: 33 },
-      { name: 'Master Toilet', size: "5' x 8'4\"", top: 17, left: 83, width: 13, height: 21 },
-    ],
-  };
-
-  // SVG path data for each unit — pixel coordinates matching 3000x1688 image
-  const unitPaths = {
-    2: "M 946,192 L 1118,191 L 1146,135 L 1331,135 L 1531,142 L 1537,201 L 1736,201 L 1735,463 L 1553,465 L 1523,648 L 1451,648 L 1446,676 L 1211,685 L 1205,546 L 1131,543 L 1140,478 L 1279,472 L 1264,401 L 1146,405 L 1143,437 L 1035,435 L 1031,534 L 927,537 L 946,192 Z",
-    1: "M 1757,202 L 1923,200 L 1960,150 L 2153,143 L 2358,128 L 2362,182 L 2547,187 L 2557,532 L 2468,533 L 2466,433 L 2377,422 L 2383,394 L 2358,402 L 2364,472 L 2362,541 L 2292,546 L 2290,683 L 2053,678 L 2046,648 L 1974,650 L 1970,472 L 1764,478 L 1755,478 L 1757,209 Z",
-    3: "M 1298,956 L 1294,1081 L 1340,1089 L 1343,1181 L 1248,1181 L 1243,1087 L 1159,1094 L 1158,1429 L 1315,1437 L 1344,1486 L 1535,1492 L 1539,1483 L 1729,1483 L 1731,1092 L 1537,1083 L 1529,944 L 1300,940 Z",
-    4: "M 1972,946 L 2199,946 L 2199,1070 L 2108,1085 L 2108,1215 L 2229,1215 L 2244,1096 L 2438,1090 L 2442,1277 L 2492,1283 L 2486,1381 L 2432,1377 L 2425,1505 L 1940,1502 L 1938,1486 L 1746,1481 L 1748,1079 L 1963,1083 Z",
-  };
-
-  const unitLabelPositions = {
-    2: { top: '5%', left: '38%' },
-    1: { top: '5%', left: '68%' },
-    3: { top: '53%', left: '42%' },
-    4: { top: '53%', left: '65%' },
-  };
+  const unitPaths = arcadiaUnitPaths;
+  const unitLabelPositions = arcadiaLabelPositions;
 
   // Building hover detection — uses measured floor positions from elevation image
   const BAND_HEIGHT = 2.5; // band height in % of image
@@ -270,33 +198,50 @@ function Home() {
               <p>Unit {selectedUnit} &nbsp; | &nbsp; {unit.type}</p>
             </div>
             <div className="home-floorplan-wrap">
-              <div className="home-unit-3d-container">
-                <img
-                  className="home-unit-3d-img"
-                  src="/images/3bhk-presidentia-3d.png"
-                  alt={`Unit ${selectedUnit} - ${unit.type} 3D View`}
-                />
-                {/* Room hotspot zones */}
-                {(roomHotspots[selectedUnit] || []).map((room, idx) => (
-                  <div
-                    key={idx}
-                    className="home-room-hotspot"
-                    style={{
-                      top: `${room.top}%`,
-                      left: `${room.left}%`,
-                      width: `${room.width}%`,
-                      height: `${room.height}%`,
-                    }}
-                    onMouseEnter={() => setHoveredRoom(idx)}
-                    onMouseLeave={() => setHoveredRoom(null)}
-                  >
-                    {hoveredRoom === idx && (
-                      <span className="home-room-tooltip">
-                        {room.name} {room.size}
-                      </span>
-                    )}
-                  </div>
-                ))}
+              <div className="home-floorplan-img-container">
+                <svg
+                  className="home-floorplan-svg"
+                  viewBox="0 0 3000 1688"
+                  preserveAspectRatio="xMidYMid meet"
+                  width="100%"
+                >
+                  <image
+                    xlinkHref="/images/3bhk-presidentia-3d.png"
+                    href="/images/3bhk-presidentia-3d.png"
+                    x="0" y="0"
+                    width="3000" height="1688"
+                  />
+                  {(roomPaths[selectedUnit] || []).map((room, idx) => {
+                    // Calculate center of path from coordinates
+                    const coords = room.path.match(/\d+,\d+/g) || [];
+                    const points = coords.map(c => { const [x, y] = c.split(','); return { x: +x, y: +y }; });
+                    const cx = points.reduce((s, p) => s + p.x, 0) / (points.length || 1);
+                    const cy = points.reduce((s, p) => s + p.y, 0) / (points.length || 1);
+                    return (
+                      <g key={idx}
+                        onMouseEnter={() => setHoveredRoom(idx)}
+                        onMouseLeave={() => setHoveredRoom(null)}
+                      >
+                        <path
+                          d={room.path}
+                          className={`room-path ${hoveredRoom === idx ? 'active' : ''}`}
+                        />
+                        {hoveredRoom === idx && (() => {
+                          const minY = Math.min(...points.map(p => p.y));
+                          const labelY = minY - 20;
+                          return (
+                            <>
+                              <rect x={cx - 220} y={labelY - 50} width="440" height="60" rx="10" fill="rgba(245,222,179,0.92)" stroke="rgba(197,148,58,0.7)" strokeWidth="2" />
+                              <text x={cx} y={labelY - 12} textAnchor="middle" fill="#3a2a0a" fontSize="30" fontFamily="sans-serif" fontWeight="600">
+                                {room.name} — {room.size}
+                              </text>
+                            </>
+                          );
+                        })()}
+                      </g>
+                    );
+                  })}
+                </svg>
               </div>
             </div>
           </div>
@@ -389,8 +334,8 @@ function Home() {
                   width="100%"
                 >
                   <image
-                    xlinkHref="/images/tower-b-typical-floor.png"
-                    href="/images/tower-b-typical-floor.png"
+                    xlinkHref="/images/arcadia-typical-plan.png"
+                    href="/images/arcadia-typical-plan.png"
                     x="0" y="0"
                     width="3000" height="1688"
                   />
@@ -434,7 +379,7 @@ function Home() {
             <button
               className="home-action-btn"
               onClick={() => setModalImage({
-                src: '/images/tower-b-typical-floor.png',
+                src: '/images/arcadia-typical-plan.png',
                 title: `Arcadia Typical Floor — Floor ${selectedFloor}`
               })}
             >

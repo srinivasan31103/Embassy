@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 3000 1688" width="3000" height="1688">
+
+  <!-- Background image -->
+  <image href="arcadia-typical-plan.png" x="0" y="0" width="3000" height="1688" />
+
+  <!-- Unit 2 - 3BHK (Top-Left) -->
+  <path id="unit-2" d="M 55,65 L 1400,65 L 1400,340 L 1190,340 L 1190,690 L 55,690 Z"
+        fill="#F5DEB3" fill-opacity="0.3" stroke="#F5DEB3" stroke-width="3" />
+
+  <!-- Unit 1 - 2BHK (Top-Right) -->
+  <path id="unit-1" d="M 1600,65 L 2945,65 L 2945,690 L 1810,690 L 1810,340 L 1600,340 Z"
+        fill="#F5E6CC" fill-opacity="0.3" stroke="#F5E6CC" stroke-width="3" />
+
+  <!-- Unit 3 - 2BHK (Bottom-Left) -->
+  <path id="unit-3" d="M 55,930 L 1190,930 L 1190,1330 L 1400,1330 L 1400,1625 L 55,1625 Z"
+        fill="#E8C99B" fill-opacity="0.3" stroke="#E8C99B" stroke-width="3" />
+
+  <!-- Unit 4 - 2BHK (Bottom-Right) -->
+  <path id="unit-4" d="M 1810,930 L 2945,930 L 2945,1625 L 1600,1625 L 1600,1330 L 1810,1330 Z"
+        fill="#F5E6CC" fill-opacity="0.3" stroke="#F5E6CC" stroke-width="3" />
+
+</svg>
